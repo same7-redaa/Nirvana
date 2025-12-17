@@ -182,7 +182,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* About Section - Modern asymmetrical layout */}
-      <section className="py-24 bg-cream relative">
+      <section id="about" className="py-24 bg-cream relative">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gold/5 skew-x-12 transform origin-top pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -236,24 +236,25 @@ const Home: React.FC = () => {
               transition={{ duration: 0.8 }}
               className="lg:w-1/2 relative"
             >
+              {/* Success Projects Card - Top Right */}
+              <div className="absolute -top-6 -right-6 bg-white p-6 rounded-2xl shadow-xl border-t-4 border-gold hidden md:block z-20">
+                <p className="font-black text-4xl text-gold mb-1">+500</p>
+                <p className="text-sm font-bold text-gray-500">{t(translations.home.about.successfulProjects)}</p>
+              </div>
+
               <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
                 <img src="/images/home.jpeg" alt="Smart Home" className="w-full object-cover hover:scale-105 transition-transform duration-700" />
               </div>
               {/* Decorative elements */}
               <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-gold/20 rounded-full blur-3xl -z-10"></div>
               <div className="absolute -top-10 -right-10 w-40 h-40 bg-dark/10 rounded-full blur-3xl -z-10"></div>
-
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border-t-4 border-gold hidden md:block">
-                <p className="font-black text-4xl text-gold mb-1">+500</p>
-                <p className="text-sm font-bold text-gray-500">مشروع ناجح</p>
-              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Detailed Services Section */}
-      <section className="py-24 bg-white relative">
+      <section id="services" className="py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <motion.span
@@ -325,7 +326,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Core Values - Bento Grid Style */}
-      <section className="py-24 bg-cream-dark bg-tech-pattern">
+      <section id="values" className="py-24 bg-cream-dark bg-tech-pattern">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <motion.span
@@ -370,7 +371,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Workflow Section */}
-      <section className="py-24 bg-white relative">
+      <section id="workflow" className="py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <motion.span
@@ -413,7 +414,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Why Choose Us - Dark Section */}
-      <section className="py-24 bg-dark text-white relative overflow-hidden">
+      <section id="whyus" className="py-24 bg-dark text-white relative overflow-hidden">
         {/* Abstract shapes */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
           <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-gold/20 blur-[100px]"></div>

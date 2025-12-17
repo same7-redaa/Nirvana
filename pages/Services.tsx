@@ -13,6 +13,7 @@ const Services: React.FC = () => {
 
   const services: ServiceItem[] = [
     {
+      id: 'smart-home',
       title: t(translations.services.cards.smartHome.title),
       subtitle: t(translations.services.cards.smartHome.subtitle),
       description: t(translations.services.cards.smartHome.description),
@@ -30,6 +31,7 @@ const Services: React.FC = () => {
       ]
     },
     {
+      id: 'smart-office',
       title: t(translations.services.cards.smartOffice.title),
       subtitle: t(translations.services.cards.smartOffice.subtitle),
       description: t(translations.services.cards.smartOffice.description),
@@ -48,6 +50,7 @@ const Services: React.FC = () => {
       ]
     },
     {
+      id: 'smart-factory',
       title: t(translations.services.cards.smartFactory.title),
       subtitle: t(translations.services.cards.smartFactory.subtitle),
       description: t(translations.services.cards.smartFactory.description),
@@ -65,6 +68,7 @@ const Services: React.FC = () => {
       ]
     },
     {
+      id: 'security',
       title: t(translations.services.cards.security.title),
       subtitle: t(translations.services.cards.security.subtitle),
       description: t(translations.services.cards.security.description),
@@ -80,6 +84,7 @@ const Services: React.FC = () => {
       ]
     },
     {
+      id: 'networks',
       title: t(translations.services.cards.networks.title),
       subtitle: t(translations.services.cards.networks.subtitle),
       description: t(translations.services.cards.networks.description),
@@ -146,11 +151,12 @@ const Services: React.FC = () => {
           {services.map((service, index) => (
             <motion.div
               key={index}
+              id={service.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
-              className="group"
+              className="group scroll-mt-24"
             >
               <div className="relative bg-white rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-500 border border-gray-100 hover:border-gold/40">
                 {/* Decorative corner accent */}

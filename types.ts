@@ -1,6 +1,7 @@
 import { LucideIcon } from "lucide-react";
 
 export interface ServiceItem {
+  id?: string;
   title: string;
   subtitle: string;
   description?: string;
