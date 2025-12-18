@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Instagram, Twitter, Linkedin, Facebook, ArrowUpRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram, Twitter, Linkedin, Facebook, ArrowUpRight, MessageCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer: React.FC = () => {
@@ -78,11 +78,16 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex items-center gap-3 text-gray-400">
                 <Phone className="text-gold flex-shrink-0" size={18} />
-                <span dir="ltr">+966 533 46 1133</span>
+                <div className="flex items-center gap-2">
+                  <a href="tel:+966533461133" dir="ltr" className="hover:text-gold transition-colors">+966 533 46 1133</a>
+                  <a href="https://wa.me/966533461133" target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-400 transition-colors" title="واتساب">
+                    <MessageCircle size={16} />
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-3 text-gray-400">
                 <Mail className="text-gold flex-shrink-0" size={18} />
-                <span className="font-sans">info@nirvanaiot.com</span>
+                <a href="mailto:info@nirvanaiot.com" className="font-sans hover:text-gold transition-colors">info@nirvanaiot.com</a>
               </li>
             </ul>
           </div>

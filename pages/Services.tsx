@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   Home, Building, Factory, Network,
-  ShieldCheck, ArrowLeft, Lock, FileText, CheckCircle
+  ShieldCheck, ArrowLeft, Lock, FileText, CheckCircle, Layers, Calculator
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ServiceItem } from '../types';
@@ -96,6 +96,37 @@ const Services: React.FC = () => {
         t(translations.services.cards.networks.items.integration),
         t(translations.services.cards.networks.items.infrastructure),
         t(translations.services.cards.networks.items.security),
+      ]
+    },
+    {
+      id: 'bms',
+      title: t(translations.services.cards.bms.title),
+      subtitle: t(translations.services.cards.bms.subtitle),
+      description: t(translations.services.cards.bms.description),
+      icon: Layers,
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070",
+      items: [
+        t(translations.services.cards.bms.items.hvac),
+        t(translations.services.cards.bms.items.lighting),
+        t(translations.services.cards.bms.items.energy),
+        t(translations.services.cards.bms.items.safety),
+      ]
+    },
+    {
+      id: 'accounting',
+      title: t(translations.services.cards.accounting.title),
+      subtitle: t(translations.services.cards.accounting.subtitle),
+      description: t(translations.services.cards.accounting.description),
+      icon: Calculator,
+      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2070",
+      items: [
+        t(translations.services.cards.accounting.items.odoo),
+        t(translations.services.cards.accounting.items.alameen),
+        t(translations.services.cards.accounting.items.setup),
+        t(translations.services.cards.accounting.items.customization),
+        t(translations.services.cards.accounting.items.training),
+        t(translations.services.cards.accounting.items.integration),
+        t(translations.services.cards.accounting.items.hardware),
       ]
     }
   ];

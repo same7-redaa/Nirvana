@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Lightbulb, Shield, Award, Eye, Zap, HeartHandshake,
   Settings, Users, BadgeDollarSign, ArrowRight, CheckCircle2,
@@ -8,7 +8,7 @@ import {
   Key, Clock, Video, Monitor, LogIn,
   Flame, Bell, Cloud, Package,
   Router, Cpu, Radio, Server, Wifi,
-  Handshake, Map, PencilRuler, Wrench
+  Handshake, Map, PencilRuler, Wrench, Layers, Calculator
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { ValueItem } from '../types';
@@ -31,61 +31,61 @@ const staggerContainer = {
 
 const Home: React.FC = () => {
   const { t, translations } = useLanguage();
+  const navigate = useNavigate();
 
   const detailedServices = [
     {
+      sectionId: 'smart-home',
       title: t(translations.home.detailedServices.smartHome.title),
       icon: HomeIcon,
       description: t(translations.home.detailedServices.smartHome.description),
-      subServices: [
-        { name: t(translations.home.detailedServices.smartHome.camera), icon: Camera },
-        { name: t(translations.home.detailedServices.smartHome.lock), icon: Lock },
-        { name: t(translations.home.detailedServices.smartHome.sensor), icon: Activity },
-        { name: t(translations.home.detailedServices.smartHome.lighting), icon: Lightbulb },
-        { name: t(translations.home.detailedServices.smartHome.curtains), icon: Sun },
-        { name: t(translations.home.detailedServices.smartHome.temperature), icon: Thermometer },
-      ]
     },
     {
+      sectionId: 'smart-office',
       title: t(translations.home.detailedServices.smartOffice.title),
       icon: Building,
       description: t(translations.home.detailedServices.smartOffice.description),
-      subServices: [
-        { name: t(translations.home.detailedServices.smartOffice.entry), icon: Key },
-        { name: t(translations.home.detailedServices.smartOffice.attendance), icon: Clock },
-        { name: t(translations.home.detailedServices.smartOffice.monitoring), icon: Video },
-        { name: t(translations.home.detailedServices.smartOffice.meetings), icon: Monitor },
-        { name: t(translations.home.detailedServices.smartOffice.doors), icon: LogIn },
-        { name: t(translations.home.detailedServices.smartOffice.visitors), icon: Users },
-      ]
     },
     {
+      sectionId: 'smart-factory',
       title: t(translations.home.detailedServices.smartFactory.title),
       icon: Factory,
       description: t(translations.home.detailedServices.smartFactory.description),
-      subServices: [
-        { name: t(translations.home.detailedServices.smartFactory.fire), icon: Flame },
-        { name: t(translations.home.detailedServices.smartFactory.alarm), icon: Bell },
-        { name: t(translations.home.detailedServices.smartFactory.cloud), icon: Cloud },
-        { name: t(translations.home.detailedServices.smartFactory.tracking), icon: Package },
-        { name: t(translations.home.detailedServices.smartFactory.automation), icon: Zap },
-        { name: t(translations.home.detailedServices.smartFactory.analytics), icon: Camera },
-      ]
     },
     {
+      sectionId: 'networks',
       title: t(translations.home.detailedServices.networks.title),
       icon: Network,
       description: t(translations.home.detailedServices.networks.description),
-      subServices: [
-        { name: t(translations.home.detailedServices.networks.wifi), icon: Wifi },
-        { name: t(translations.home.detailedServices.networks.router), icon: Router },
-        { name: t(translations.home.detailedServices.networks.server), icon: Server },
-        { name: t(translations.home.detailedServices.networks.security), icon: Shield },
-        { name: t(translations.home.detailedServices.networks.wireless), icon: Radio },
-        { name: t(translations.home.detailedServices.networks.processor), icon: Cpu },
-      ]
+    },
+    {
+      sectionId: 'bms',
+      title: t(translations.home.detailedServices.bms.title),
+      icon: Layers,
+      description: t(translations.home.detailedServices.bms.description),
+    },
+    {
+      sectionId: 'accounting',
+      title: t(translations.home.detailedServices.accounting.title),
+      icon: Calculator,
+      description: t(translations.home.detailedServices.accounting.description),
     }
   ];
+
+  const handleServiceClick = (sectionId: string) => {
+    navigate('/services');
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const navbarHeight = 80;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: elementPosition - navbarHeight,
+          behavior: 'smooth'
+        });
+      }
+    }, 300);
+  };
 
   const values: ValueItem[] = [
     { title: t(translations.home.valuesList.innovation), englishTitle: t(translations.home.valuesList.innovationEn), icon: Lightbulb },
@@ -96,32 +96,33 @@ const Home: React.FC = () => {
     { title: t(translations.home.valuesList.satisfaction), englishTitle: t(translations.home.valuesList.satisfactionEn), icon: HeartHandshake },
   ];
 
-  const brands = [
-    "HIKVISION", "EZVIZ", "ZKTECO", "DAHUA", "SAMSUNG", "Aqara", "Google", "Amazon"
+  const brandLogos = [
+    { name: "Hikvision", logo: "/images/logos/hikvision-1.svg" },
+    { name: "EZVIZ", logo: "/images/logos/ezviz-logo.png" },
+    { name: "ZKTECO", logo: "/images/logos/ZKTECO.png" },
+    { name: "DAHUA", logo: "/images/logos/DAHUA.png" },
+    { name: "Samsung", logo: "/images/logos/samsung-electronics.svg" },
+    { name: "Samsung Wisenet", logo: "/images/logos/SamsungWisenet.jpg" },
+    { name: "Google", logo: "/images/logos/google-1-1.svg" },
+    { name: "Aqara", logo: "/images/logos/aqara_logo.jpg" },
+    { name: "Alexa", logo: "/images/logos/alexa_logo.png" },
+    { name: "Tuya", logo: "/images/logos/tuya-.png" },
   ];
 
   return (
     <div className="overflow-hidden">
 
       {/* Dynamic Hero Section */}
-      <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-dark">
-        {/* Animated Background */}
-        <div className="absolute inset-0 z-0">
-          <motion.div
-            initial={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 10, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-            className="w-full h-full"
-          >
-            <img
-              src="/images/hero.png"
-              alt="Future Technology"
-              className="w-full h-full object-cover opacity-40"
-            />
-          </motion.div>
-          <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/80 to-transparent"></div>
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 mix-blend-overlay"></div>
+      <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-dark via-dark to-dark/95">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden opacity-20">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gold/30 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gold/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gold/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
         </div>
+
+        {/* Decorative Pattern */}
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
 
         {/* Content */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
@@ -273,7 +274,7 @@ const Home: React.FC = () => {
             </motion.h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {detailedServices.map((service, idx) => (
               <motion.div
                 key={idx}
@@ -281,7 +282,8 @@ const Home: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="relative bg-gradient-to-br from-white via-cream/20 to-white p-8 rounded-3xl hover:shadow-2xl border-2 border-gray-100 hover:border-gold/40 transition-all duration-500 group overflow-hidden"
+                onClick={() => handleServiceClick(service.sectionId)}
+                className="relative bg-gradient-to-br from-white via-cream/20 to-white p-8 rounded-3xl hover:shadow-2xl border-2 border-gray-100 hover:border-gold/40 transition-all duration-500 group overflow-hidden cursor-pointer"
               >
                 {/* Decorative gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-gold/0 via-gold/5 to-gold/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -303,8 +305,11 @@ const Home: React.FC = () => {
                     {service.description}
                   </p>
 
-                  {/* Hover indicator */}
-                  <div className="mt-6 w-12 h-1 bg-gradient-to-r from-transparent via-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  {/* Click indicator */}
+                  <div className="mt-6 flex items-center gap-2 text-gold opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="text-sm font-bold">{t(translations.home.services.viewAll)}</span>
+                    <ArrowRight size={16} />
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -455,22 +460,42 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Trusted Brands - Infinite Scroll */}
+      {/* Trusted Brands */}
       <section className="py-16 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 mb-8 text-center">
-          <span className="text-sm font-bold text-gray-400 uppercase tracking-widest">{t(translations.home.brands.label)}</span>
-        </div>
-        <div className="relative overflow-hidden">
-          <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
-          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-12"
+          >
+            <span className="text-sm font-bold text-gray-400 uppercase tracking-widest">{t(translations.home.brands.label)}</span>
+          </motion.div>
 
-          <div className="flex gap-16 animate-marquee whitespace-nowrap items-center justify-center">
-            {[...brands, ...brands].map((brand, idx) => (
-              <span key={idx} className="text-3xl font-black text-gray-200 hover:text-gold transition-colors cursor-default px-4">
-                {brand}
-              </span>
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-5 gap-6 md:gap-8"
+          >
+            {brandLogos.map((brand, idx) => (
+              <motion.div
+                key={idx}
+                variants={fadeInUp}
+                whileHover={{ scale: 1.1, y: -5 }}
+                transition={{ duration: 0.3 }}
+                className="flex items-center justify-center p-3 md:p-4 rounded-xl hover:bg-cream transition-colors duration-300 cursor-default"
+              >
+                <img
+                  src={brand.logo}
+                  alt={brand.name}
+                  className="h-8 md:h-12 w-auto object-contain max-w-full"
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>
